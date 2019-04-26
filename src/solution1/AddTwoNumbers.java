@@ -1,8 +1,6 @@
 package solution1;
 
 
-import java.util.Stack;
-
 /**
  * 给出两个非空的链表用来表示两个非负的整数。其中，它们各自的位数是按照逆序的方式存储的，
  * 并且它们的每个节点只能存储一位数字。
@@ -29,97 +27,38 @@ public class AddTwoNumbers {
     }
 
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-//        ListNode head1=reverseList(l1);
-//        ListNode head2=reverseList(l2);
 
-        ListNode cur=l1;
-        int count=1;
-        int num1=cur.val*count;
-        while(cur.next!=null){
+        ListNode head1=l1;
+        ListNode head2=l2;
+        //类似于空的头节点，方便操作
+        ListNode dumpHead=new ListNode(0);
+        //结果链表
+        ListNode cur=dumpHead;
+        int carry=0;
+        //两个链表同时遍历，直到最长的结束
+        while(head1!=null||head2!=null){
+            int num1=head1==null?0:head1.val;
+            int num2=head2==null?0:head2.val;
+            int sum=num1+num2+carry;
+            //控制是否进位
+            carry=sum/10;
+            //每个节点的value一定是一个数字
+            cur.next=new ListNode(sum%10);
             cur=cur.next;
-            count=count*10;
-            num1+=cur.val*count;
+            if(head1!=null){
+                head1=head1.next;
+            }
+            if(head2!=null){
+                head2=head2.next;
+            }
         }
-
-        cur=l2;
-        count=1;
-        int num2=cur.val*count;
-        while(cur.next!=null){
-            cur=cur.next;
-            count=count*10;
-            num2+=cur.val*count;
+        //两个链表刚好等长，刚好需要进位的情况
+        if(carry>0){
+            cur.next=new ListNode(carry);
         }
-
-        ListNode res=transToList(Integer.toString(num1+num2));
-        return res;
+        return dumpHead.next;
     }
 
-    /**
-     * 将数字入栈，并逆序
-     * @param str
-     * @return
-     */
-    public static ListNode transToList(String str){
-        char[] arr=str.toCharArray();
-        ListNode head=new ListNode(Integer.parseInt(String.valueOf(arr[0])));
-        ListNode cur=head;
-
-        //构建链表
-        for(int i=0;i<arr.length-1;i++){
-            ListNode next=new ListNode(Integer.parseInt(String.valueOf(arr[i+1])));
-            cur.next=next;
-            cur=cur.next;
-        }
-
-        Stack<ListNode> help=new Stack<>();
-        help.push(head);
-        ListNode cur2=head;
-        head.next=null;
-
-        //将链表中的元素都先入栈
-        while(cur2.next!=null){
-            System.out.println(cur2.val+"---------");
-            cur2=cur2.next;
-            help.push(cur2);
-        }
-        //此时cur指向链表最后一个元素，也是栈顶元素
-        head=cur2;
-        cur2=help.pop();
-        System.out.println(cur2.val+"---------");
-        while (!help.isEmpty()){
-            cur2.next=help.pop();
-        }
-        return head;
-    }
-
-
-//    /**
-//     * 将链表中的元素逆序
-//     * @param head
-//     * @return
-//     */
-//    public static ListNode reverseList(ListNode head){
-//        if(head==null){
-//            return null;
-//        }
-//        Stack<ListNode> help=new Stack<>();
-//        help.push(head);
-//        ListNode cur=head;
-//        head.next=null;
-//        //将链表中的元素都先入栈
-//        while(cur.next!=null){
-//            cur=cur.next;
-//            help.push(cur.next);
-//        }
-//        //此时cur指向链表最后一个元素，也是栈顶元素
-//        head=cur;
-//        cur=help.pop();
-//        while (!help.isEmpty()){
-//            cur.next=help.pop();
-//
-//        }
-//        return head;
-//    }
 
     public static void main(String[] args) {
         ListNode head1=new ListNode(2);
@@ -129,13 +68,14 @@ public class AddTwoNumbers {
         ListNode head2=new ListNode(5);
         head2.next=new ListNode(6);
         head2.next.next=new ListNode(4);
-//        addTwoNumbers(head1,head2);
-
-        ListNode head=transToList("342");
-        while (head!=null){
-            System.out.print(head.val+"->");
-            head=head.next;
+        ListNode cur=addTwoNumbers(head1,head2);
+        while(cur!=null){
+            if(cur.next==null){
+                System.out.print(cur.val);
+                return;
+            }
+            System.out.print(cur.val+"->");
+            cur=cur.next;
         }
-
     }
 }
