@@ -26,6 +26,13 @@ public class AddTwoNumbers {
         }
     }
 
+    /**
+     * 时间复杂度是O(n)，n是最长的链表的长度
+     * 额外空间复杂度也是O(n)，n是最长的链表所占的空间
+     * @param l1
+     * @param l2
+     * @return
+     */
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 
         ListNode head1=l1;
