@@ -26,7 +26,7 @@ public class LongestSubstringWithoutRepeating {
      * @param s
      * @return
      */
-    public int lengthOfLongestSubstring1(String s) {
+    public static int lengthOfLongestSubstring1(String s) {
 
         int res = 0;
         for (int i = 0; i < s.length(); i++) {
@@ -48,7 +48,7 @@ public class LongestSubstringWithoutRepeating {
      * @param end
      * @return
      */
-    public boolean allUnique(String s, int start, int end) {
+    public static boolean allUnique(String s, int start, int end) {
         Set<Character> help = new HashSet<>();
         boolean res = true;
         for (int i = start; i <= end; i++) {
@@ -98,7 +98,7 @@ public class LongestSubstringWithoutRepeating {
      * @param s
      * @return
      */
-    public int lengthOfLongestSubstring3(String s) {
+    public static int lengthOfLongestSubstring3(String s) {
         int n = s.length(), ans = 0;
         //记录当前字符的下标，便于直接定位
         Map<Character, Integer> map = new HashMap<>();
@@ -114,7 +114,7 @@ public class LongestSubstringWithoutRepeating {
 
 
     public static void main(String[] args) {
-        int i = lengthOfLongestSubstring2("abdaccdef");
+        int i = lengthOfLongestSubstring3("abdaccdef");
         System.out.println(i);
     }
 }
