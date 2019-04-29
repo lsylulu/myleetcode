@@ -99,22 +99,25 @@ public class LongestSubstringWithoutRepeating {
      * @return
      */
     public static int lengthOfLongestSubstring3(String s) {
-        int n = s.length(), ans = 0;
+        int n = s.length(), res = 0;
         //记录当前字符的下标，便于直接定位
         Map<Character, Integer> map = new HashMap<>();
         for (int j = 0, i = 0; j < n; j++) {
             if (map.containsKey(s.charAt(j))) {
+                //下必然往前走，不可能走到之前的位置
                 i = Math.max(map.get(s.charAt(j)), i);
             }
-            ans = Math.max(ans, j - i + 1);
+
+            System.out.println(map.size());
+            res = Math.max(res, j - i + 1);
             map.put(s.charAt(j), j + 1);
         }
-        return ans;
+        return res;
     }
 
 
     public static void main(String[] args) {
-        int i = lengthOfLongestSubstring3("abdaccdef");
+        int i = lengthOfLongestSubstring3("abdaacbdef");
         System.out.println(i);
     }
 }
