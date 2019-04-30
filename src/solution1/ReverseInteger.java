@@ -29,6 +29,7 @@ public class ReverseInteger {
                 x /= 10;
                 //将之前的数*10+取出的当前数的个位数
                 res = res * 10 + singleNum;
+            System.out.println();
         }
         return res;
     }
