@@ -6,6 +6,8 @@ package solution2;
  * 找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。
  *
  * 说明：你不能倾斜容器，且 n 的值至少为 2。
+ * 输入: [1,8,6,2,5,4,8,3,7]
+ * 输出: 49
  */
 public class ContainerWithMostWater {
 
