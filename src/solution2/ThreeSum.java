@@ -66,7 +66,8 @@ public class ThreeSum {
                     while (right - 1 > left && nums[right] == nums[right - 1]) {
                         right--;
                     }
-                    //必须先判重，再跳到下一个位置
+                    //必须先判重，再跳到下一个位置，因为上面两个while只会让指针到达最后一个
+                    //相同元素的位置
                     left++;
                     right--;
                 } else if (sum > 0) {
