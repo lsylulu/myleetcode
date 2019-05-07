@@ -31,7 +31,8 @@ public class GenerateParentheses {
      */
     public void help(int left,int right,String res,List<String> list){
 
-        //在拼凑过程中，左括号数使用大于等于又括号数
+        //在拼凑过程中，左括号数驶中大于等于又括号数
+        //所以剩余的左括号数必须小于剩余的右括号数
         if(left<0||right<0||left>right){
             return;
         }
