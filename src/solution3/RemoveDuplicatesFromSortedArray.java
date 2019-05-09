@@ -36,6 +36,10 @@ public class RemoveDuplicatesFromSortedArray {
         }
         int i=0;
         for(int j=1;j<nums.length;j++){
+            //正常请况下nums[i]!=nums[j]
+            //nums[++i]==nums[j]
+            //出现相同元素时，i不动，随着j++，走到与i不同的元素时
+            //就把nums[j]赋值给nums[i]
             if(nums[i]!=nums[j]){
                 i++;
                 nums[i]=nums[j];
@@ -45,7 +49,7 @@ public class RemoveDuplicatesFromSortedArray {
     }
 
     public static void main(String[] args) {
-        int[] nums={0,1,1,2,2,3,5};
+        int[] nums={0,1,2,2,2,3,5};
         System.out.println(removeDuplicates(nums));
         for(int i:nums){
             System.out.print(i+" ");
