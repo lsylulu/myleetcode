@@ -31,14 +31,17 @@ public class DivideTwoIntegers {
         if(dividend==0){
             return 0;
         }
-        //判断两数符号位是否不同
-        boolean isNegative=true;
-        if((dividend^divisor)>0){
-            isNegative=false;
+        if (dividend == Integer.MIN_VALUE && divisor == -1) {
+            return Integer.MAX_VALUE;
         }
-        //将两数转换为正数处理
-        int a=Math.abs(dividend);
-        int b=Math.abs(divisor);
+        //判断两数符号位是否不同
+        boolean isNegative=(dividend^divisor)<0;
+//        if((dividend^divisor)>0){
+//            isNegative=false;
+//        }
+        //将两数转换为正数处理,不转换为long可能溢出
+        long a=Math.abs((long)dividend);
+        long b=Math.abs((long)divisor);
         int res=0;
         for(int i=31;i>=0;i--){
             //刚开始，a>>31,数特别小，肯定小于b
@@ -48,11 +51,11 @@ public class DivideTwoIntegers {
             if((a>>i)>=b){
                 //被除数/除数=商+余数
                 //现在要的是商，商×除数+余数=被除数
-                res=res+1<<i;
-                a=a-b<<i;
+                res=res+(1<<i);
+                a=a-(b<<i);
             }
 
         }
-        return res;
+        return isNegative ? -res : res;
     }
 }
