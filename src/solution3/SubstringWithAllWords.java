@@ -1,5 +1,8 @@
 package solution3;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 给定一个字符串 s 和一些长度相同的单词 words。
  * 找出 s 中恰好可以由 words 中所有单词串联形成的子串的起始位置。
@@ -25,4 +28,37 @@ package solution3;
  * 输出：[]
  */
 public class SubstringWithAllWords {
+
+    public List<Integer> findSubstring(String s, String[] words) {
+
+        List res=new ArrayList();
+        if (words.length == 0 || s.length() == 0) {
+            return res;
+        }
+        int singleLength=words[0].length();
+
+        //strLength-wordsLength*words[0].length()实际上就是个加速的过程
+        for(int i=0;i<=s.length()-words.length*singleLength;i++){
+            //存放words数组，拿来匹配s
+            List help=new ArrayList();
+            String sub=s.substring(i,i+singleLength*words.length);
+            for(int j=0;j<words.length;j++){
+                help.add(sub.substring(j*singleLength,(j+1)*singleLength));
+            }
+            //每匹配上一个就删除，巧妙的避开了排列组合的问题
+            for (int k=0;k<words.length;k++){
+                if(help.contains(words[k])){
+                    help.remove(words[k]);
+                }else {
+                    break;
+                }
+            }
+
+            if(help.isEmpty()){
+                res.add(i);
+            }
+        }
+        return res;
+    }
+
 }
