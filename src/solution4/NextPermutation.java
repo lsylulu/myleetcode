@@ -24,7 +24,7 @@ public class NextPermutation {
      * 1,5,8,5,7,6,4,3,1->1,5,8,4,7,6,5,3,1->1,5,8,4,1,3,5,6,7
      * @param nums
      */
-    public void nextPermutation(int[] nums) {
+    public static void nextPermutation(int[] nums) {
         int n=nums.length-2;
         //从后往前找，刚好找到nums[n]<nums[n+1]的数
         while(n>=0&&nums[n+1]<=nums[n]){
@@ -37,6 +37,7 @@ public class NextPermutation {
             while(m>=0&&nums[n]>=nums[m]){
                 m--;
             }
+            System.out.println(m);
             swap(nums,n,m);
         }
         //已经不可能找到更小的字典序了，直接反转
@@ -44,17 +45,25 @@ public class NextPermutation {
 
     }
 
-    public  void swap(int nums[],int i, int j){
+    public  static void swap(int nums[],int i, int j){
         int tmp=nums[i];
         nums[i]=nums[j];
         nums[j]=tmp;
     }
-    public void reverse(int nums[],int start){
+    public static void reverse(int nums[],int start){
         int end=nums.length-1;
         while(start<=end) {
             int tmp = nums[start];
             nums[start++] = nums[end];
             nums[end--] = tmp;
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] nums={2,3,1};
+        nextPermutation(nums);
+        for(int num:nums){
+            System.out.print(num+" ");
         }
     }
 
