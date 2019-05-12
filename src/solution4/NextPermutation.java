@@ -30,7 +30,6 @@ public class NextPermutation {
         while(n>=0&&nums[n+1]<=nums[n]){
             n--;
         }
-        int myIndex=n;
 
         if(n>=0){
             //去后面找恰好大于它的数
