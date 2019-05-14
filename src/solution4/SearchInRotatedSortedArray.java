@@ -43,6 +43,9 @@ public class SearchInRotatedSortedArray {
             return mid;
         }
 
+        //1,2,3,4,5,7,8,9,10
+        //nums[mid]==5,nums[begin]==1,nums[end]==10
+        //target可能在begin-mid-1；也可能在mid+1-end
         if (nums[mid] < nums[end]) {
             if (nums[mid] < target && target <= nums[end]) {
 
@@ -52,8 +55,9 @@ public class SearchInRotatedSortedArray {
             }
             //此时mid在左半段
         } else {
-            //5,6,7,8,9  1,2,3,4,5
-            //target正好在一端升序的begin-end中
+            //7,8,9,10,11,12,4,5,6,7
+            //nums[mid]==11,nums[begin]==7,nums[end]==7
+            //target可能在begin-mid；也可能在mid+1-end
             if (nums[begin] <= target && target < nums[mid]) {
                 return smallSearch(nums, target, begin, mid - 1);
             } else {
