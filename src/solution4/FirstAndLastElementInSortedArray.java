@@ -43,7 +43,8 @@ public class FirstAndLastElementInSortedArray {
     }
 
     /**
-     * 二分法查找
+     * 二分法查找，可以用正常的二分法，这里直接用了上一题的代码
+     * 上一题的是升级版的二分法，一定适用于正常情况
      * @param nums
      * @param low
      * @param high
