@@ -37,7 +37,7 @@ public class CountAndSay {
         int count=1;
         //记录当前字符，循环判断say出现了几次
         char say;
-        //从1开始，不然没有第一次
+        //从1开始，因为n是1就直接出循环了，直接返回1
         for (int i=1;i<n;i++){
             prev=cur;
             //重置cur
@@ -57,6 +57,7 @@ public class CountAndSay {
                     count++;
                 }
             }
+            //输出几个一，最后一个数字必然是1
             cur.append(count).append(say);
             System.out.println(cur.toString());
         }
