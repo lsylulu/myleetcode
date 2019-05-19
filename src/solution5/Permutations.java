@@ -21,19 +21,21 @@ import java.util.List;
  */
 public class Permutations {
 
-    public List<List<Integer>> permute(int[] nums) {
+    public static List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
         dfs(res, nums, 0);
         return res;
     }
 
-    public void dfs(List<List<Integer>> res, int[] nums, int cur) {
+    public static void dfs(List<List<Integer>> res, int[] nums, int cur) {
         //设置递归终点，cur走到头了本次也就交换完了
         if (cur == nums.length) {
             List<Integer> temp = new ArrayList<>();
             for (Integer item : nums) {
                 temp.add(item);
             }
+            System.out.println(temp);
+            System.out.println("-------------");
             res.add(temp);
         } else {
             //从当前元素开始向后遍历
@@ -46,10 +48,14 @@ public class Permutations {
         }
     }
 
-    public void swap(int[] arr, int a, int b) {
+    public static void swap(int[] arr, int a, int b) {
         int temp = arr[a];
         arr[a] = arr[b];
         arr[b] = temp;
     }
 
+    public static void main(String[] args) {
+        int[] nums={1,2,3};
+        permute(nums);
+    }
 }
