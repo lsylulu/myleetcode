@@ -39,20 +39,20 @@ public class WildcardMatching {
 
     /**
      * 动态规划法
-     * @param s
-     * @param p
+     * @param text
+     * @param pattern
      * @return
      */
-    public boolean isMatch(String s, String p) {
+    public boolean isMatch(String text, String pattern) {
 
         //最后一个存放最终结果
-        boolean[][] m = new boolean[s.length()+1][p.length()+1];
+        boolean[][] m = new boolean[text.length()+1][pattern.length()+1];
 
         //两个字符串都为空是肯定匹配
         m[0][0] = true;
-        for(int i = 0; i <= s.length(); i++) {
-            for(int j = 1; j <= p.length(); j++) {
-                if(p.charAt(j-1) == '*') {
+        for(int i = 0; i <= text.length(); i++) {
+            for(int j = 1; j <= pattern.length(); j++) {
+                if(pattern.charAt(j-1) == '*') {
                     //其实就是两种情况，
                     //1）m[i][j-1] 即当前'*'匹配一个空字符
                     //2）m[i-1][j] 即当前'*'匹配一个字符s.charAt(i-1)
@@ -60,11 +60,11 @@ public class WildcardMatching {
                     m[i][j] = m[i][j-1] || (i > 0 && m[i-1][j]);
                 } else {
                     //之前的情况必须匹配，并且当前字符相同时才能是true
-                    m[i][j] = i > 0 && m[i-1][j-1] && (s.charAt(i-1) == p.charAt(j-1) || p.charAt(j-1) == '?');
+                    m[i][j] = i > 0 && m[i-1][j-1] && (text.charAt(i-1) == pattern.charAt(j-1) || pattern.charAt(j-1) == '?');
                 }
             }
         }
 
-        return m[s.length()][p.length()];
+        return m[text.length()][pattern.length()];
     }
 }
