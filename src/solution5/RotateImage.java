@@ -45,34 +45,33 @@ package solution5;
 public class RotateImage {
 
     /**
+     * 把微观转变为宏观
      * 任意一个(i,j) , (j, n-i-1), (n-i-1, n-j-1), (n -j-1, i)就是这四个索引号上的数交换
      * @param matrix
      */
     public static void rotate(int[][] matrix) {
-        int len=matrix.length;
-        //一次循环转len个点，总共循环len次
-        for(int i=0;i<len;i++){
-            //本行第一个元素索引
-            int start =i;
-            //本行最后一个元素索引
-            int end=len-i-1;
-            for(int j=i;j<end-start;j++){
-                //记录要旋转的那个元素
-                int temp= matrix[start+j][start];
-                matrix[start][start+j]=matrix[end-j][start];
-                matrix[end-j][start]=matrix[end][end-j];
-                matrix[end][end-j]=matrix[start+j][end];
-                matrix[start+j][end]=temp;
 
+        int len=matrix.length;
+        //每次循环处理一圈
+        for (int i = 0; i < len/2; i++ ) {
+            for (int j = i; j < len - i - 1; j ++ ){
+                int tmp = matrix[i][j];
+                matrix[i][j] = matrix[len-j-1][i];
+                matrix[len-j-1][i] = matrix[len-i-1][len-j-1];
+                matrix[len-i-1][len-j-1] = matrix[j][len-i-1];
+                matrix[j][len-i-1] = tmp;
+
+                //打印每一圈的处理结果
                 for(int k=0;k<len;k++){
                     for (int o=0;o<len;o++){
-
                         System.out.print(matrix[k][o]+" ");
                     }
                     System.out.println();
                 }
+                System.out.println();
             }
         }
+
     }
 
     public static void main(String[] args) {
