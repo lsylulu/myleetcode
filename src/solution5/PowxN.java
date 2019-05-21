@@ -30,7 +30,7 @@ public class PowxN {
      * @param n
      * @return
      */
-    public double myPow(double x, int n) {
+    public static double myPow(double x, int n) {
         double res = 1.0;
 
         for(int i = n; i != 0; i /= 2){
@@ -40,5 +40,9 @@ public class PowxN {
             x *= x;
         }
         return  n < 0 ? 1 / res : res;
+    }
+
+    public static void main(String[] args) {
+        myPow(2.00000, 10);
     }
 }
