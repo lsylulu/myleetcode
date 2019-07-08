@@ -55,7 +55,7 @@ public class RebuildBinaryTree {
             if(val==in[i]){
                 //下面的索引变换画个图就明白了！
                 //处理root前面的一串
-                root.left=reConstructBinaryTree(pre,++startPre,startPre+i-startIn,in,startIn,i-1);
+                root.left=reConstructBinaryTree(pre,startPre+1,startPre+i-startIn,in,startIn,i-1);
                 //处理root后面的一串
                 root.right=reConstructBinaryTree(pre,startPre+i-startIn+1,endPre,in,i+1,endIn);
                 //中序遍历数组中找了的对应的root，使命就结束了
