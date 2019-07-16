@@ -8,7 +8,6 @@ import java.util.Stack;
  */
 public class PrintListfFromTail {
 
-
     public class ListNode {
         int val;
         ListNode next = null;
