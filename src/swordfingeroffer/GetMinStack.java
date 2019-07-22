@@ -11,8 +11,8 @@ public class GetMinStack {
     /**
      * 放当前的最小值
      */
-    public static Stack<Integer> help=new Stack<>();
-    public static Stack<Integer> data=new Stack<>();
+    public static Stack<Integer> help = new Stack<>();
+    public static Stack<Integer> data = new Stack<>();
 
     public static void push(int node) {
 
@@ -28,7 +28,7 @@ public class GetMinStack {
 
     public static void pop() {
 
-        if(data.isEmpty()){
+        if (data.isEmpty()) {
             throw new RuntimeException("栈为空");
         }
         data.pop();
@@ -45,7 +45,7 @@ public class GetMinStack {
 
     public static int min() {
 
-        if(help.isEmpty()){
+        if (help.isEmpty()) {
             throw new RuntimeException("栈为空");
         }
         return help.peek();
