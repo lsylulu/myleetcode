@@ -8,11 +8,10 @@ package swordfingeroffer;
  */
 public class NumberOf1Between1AndN {
 
-    public int NumberOf1Between1AndN_Solution(int n) {
-        int begin=1;
+    public static int NumberOf1Between1AndN_Solution(int n) {
         int count=0;
-        for(int i=0;i<n;i++){
-            char[] curCh=String.valueOf(n).toCharArray();
+        for(int i=1;i<=n;i++){
+            char[] curCh=String.valueOf(i).toCharArray();
             for(int j=0;j<curCh.length;j++){
                 if(new Integer(1).equals(Integer.valueOf(""+curCh[j]))){
                     count++;
@@ -20,5 +19,9 @@ public class NumberOf1Between1AndN {
             }
         }
         return count;
+    }
+
+    public static void main(String[] args) {
+        NumberOf1Between1AndN_Solution(1);
     }
 }
