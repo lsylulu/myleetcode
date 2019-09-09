@@ -21,7 +21,7 @@ public class NextPermutation {
      * 然后找到5后面的恰好比5大的数，交换位置
      * 再将3号索引(之前5所在的索引)后的数逆置，
      * 由于后往前是升序的，所以逆置后必然是最小的字典序，得到答案
-     * 1,5,8,5,7,6,4,3,1->1,5,8,4,7,6,5,3,1->1,5,8,4,1,3,5,6,7
+     * 1,5,8,5,7,6,4,3,1->1,5,8,6,7,5,4,3,1->1,5,8,6,1,3,4,5,7
      * @param nums
      */
     public static void nextPermutation(int[] nums) {
@@ -60,7 +60,7 @@ public class NextPermutation {
     }
 
     public static void main(String[] args) {
-        int[] nums={2,3,1};
+        int[] nums={1,5,8,5,7,6,4,3,1};
         nextPermutation(nums);
         for(int num:nums){
             System.out.print(num+" ");
